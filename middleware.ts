@@ -7,7 +7,8 @@ export function middleware(request: NextRequest) {
     const isProtectedRoute = protectedRoutes.includes(request.nextUrl.pathname);
     const isNotLoggedIn = !currentUser;
     if (isProtectedRoute && isNotLoggedIn) {
-        return NextResponse.redirect("/auth/login");
+        const redirectUrl = new URL("/auth/login", request.nextUrl.origin).toString();
+        return NextResponse.redirect(redirectUrl);
     }
     return NextResponse.next();
 
