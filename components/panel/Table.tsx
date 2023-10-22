@@ -1,6 +1,6 @@
 import React from 'react';
 import ClipboardData from '../icons/Panel/ClipboardData';
-
+import AdDateToJalaliDate from '@/services/AdDateToJalaliDate';
 interface employer {
   first_name: string;
   last_name: string;
@@ -38,7 +38,6 @@ export default function Table({
   tableData: TableData[];
   tableType: string;
 }) {
-  // console.log(tableData.user.first_name)
   return (
     <div>
       <div className="flex gap-2 font-medium text-3xl border-b-2 border-black pb-4 mb-6">
@@ -66,8 +65,8 @@ export default function Table({
                       {/* Add this line to display the row number */}
                       <td>{data.user.first_name} {data.user.last_name}</td>
                       <td>{data.vacation_status}</td>
-                      <td>{data.end_time}</td>
-                      <td>{data.start_time}</td>
+                      <td>{AdDateToJalaliDate(data.end_time)}</td>
+                      <td>{AdDateToJalaliDate(data.start_time)}</td>
                       <td
                         className={`badge badge-${
                           data.status === 'Approved'
@@ -94,8 +93,8 @@ export default function Table({
                       {/* <td>{data.first_name}</td>
                       <td>{data.last_name}</td> */}
                       {/* <td>{data.typeOfLeave}</td> */}
-                      <td>{data.end_time}</td>
-                      <td>{data.start_time}</td>
+                      <td>{AdDateToJalaliDate(data.end_time)}</td>
+                      <td>{AdDateToJalaliDate(data.start_time)}</td>
                       <td
                         className={`badge badge-${
                           data.status === 'Approved'
@@ -122,8 +121,8 @@ export default function Table({
                       <td>{data.user.first_name} {data.user.last_name}</td>
                       <td>{data.user.employer.first_name} {data.user.employer.last_name}</td>
                       <td>{data.vacation_status}</td>
-                      <td>{data.end_time}</td>
-                      <td>{data.start_time}</td> 
+                      <td>{AdDateToJalaliDate(data.end_time)}</td>
+                      <td>{AdDateToJalaliDate(data.start_time)}</td>
                       <td
                         className={`badge badge-${
                           data.status === 'Approved'

@@ -3,9 +3,13 @@ import React from 'react';
 export default function LeaveFormRadio({
   title,
   items,
+  register,
+  errors,
 }: {
   title: string;
   items: string[];
+  register:any;
+  errors:any;
 }) {
   return (
     <div className="flex flex-col gap-3">
