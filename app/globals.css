@@ -1,0 +1,98 @@
+/* Import Tailwind CSS base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define custom fonts with @font-face */
+@font-face {
+  font-family: 'Gilda Display';
+  src: url('../public/static/fonts/GildaDisplay-Regular.ttf'),
+    local('Serif') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Barlow';
+  src: url('../public/static/fonts/Barlow-Regular.ttf'),
+    local('Serif') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Condensed';
+  src: url('../public/static/fonts/BarlowCondensed-Regular.ttf'),
+    local('Serif') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Smooth scroll behavior for HTML */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent images from being draggable */
+img {
+  pointer-events: none;
+}
+
+/* Customize scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(250 204 21);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Define styles for elements with class "b4" */
+.b4 {
+  overflow: hidden !important;
+  /* Add more styles for .b4 here if needed */
+}
+
+/* Hover effect for elements with class "b4" */
+.b4:hover {
+  color: blue;
+}
+
+/* Hover effect for elements with class "b4" with .circle child */
+.b4:hover > .circle {
+  transform: scale(90);
+  /* Add more styles for .circle here if needed */
+}
+
+/* Hover effect for elements with class "btn2" */
+.btn2 span:first-child {
+  transform: translateX(-101%);
+  transition: transform 0.3s ease-in;
+}
+
+/* Translate .btn2 span on hover */
+.btn2:hover span {
+  transform: translateX(0);
+}
+
+/* Create a gradient overlay for elements with class "courses-overlay" */
+.courses-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #f6e05e, #84cc16);
+  opacity: 0.5; /* Adjust the opacity as needed */
+  /* Add more styles for .courses-overlay::before here if needed */
+}

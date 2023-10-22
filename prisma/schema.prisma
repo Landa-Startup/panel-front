@@ -1,0 +1,206 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int              @id @default(autoincrement())
+  name           String
+  role           String?
+  accounts       Account?
+  sessions       Session[]
+  UserCategories UserCategories[]
+}
+
+model Account {
+  id       Int    @id @default(autoincrement())
+  userId   Int    @unique
+  email    String @unique
+  password String
+  user     User   @relation(fields: [userId], references: [id])
+}
+
+model Session {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  expires      DateTime
+  sessionToken String   @unique
+  accessToken  String?  @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id             Int              @id @default(autoincrement())
+  title          String
+  description    String
+  userId         Int?
+  UserCategories UserCategories[]
+}
+
+model UserCategories {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model News {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime   @default(now())
+  image       String[]
+  NewsTag     NewsTags[]
+}
+
+model Tag {
+  id      Int        @id @default(autoincrement())
+  name    String
+  NewsTag NewsTags[]
+}
+
+model NewsTags {
+  id     Int  @id @default(autoincrement())
+  newsId Int
+  tagId  Int
+  news   News @relation(fields: [newsId], references: [id])
+  tag    Tag  @relation(fields: [tagId], references: [id])
+}
+
+model ContactUsForm {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  number    String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model BusinessPartner {
+  id                  Int      @id @default(autoincrement())
+  fullName            String
+  email               String
+  streetAddress       String
+  companyName         String
+  phoneNumber         String
+  countryOfEsidence   String
+  streetAddressLine2  String
+  investmentCeiling   String
+  birthTime           DateTime
+  provinceOfResidence String
+  zipCode             BigInt
+  yourPositionInTeam  String
+  preferredInvestment String
+  wayKnowUs           String
+}
+
+model InvestorRegistration {
+  id                  Int      @id @default(autoincrement())
+  firstName           String
+  lastName            String
+  email               String
+  birthDate           DateTime
+  countryOfResidence  String
+  provinceOfResidence String
+  companyName         String
+  interests           String
+  preferredAreas      String
+  howDidYouKnowUs     String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model PartnerMembership {
+  id                  Int      @id @default(autoincrement())
+  firstName           String
+  lastName            String
+  birthDate           DateTime
+  email               String
+  countryOfResidence  String
+  provinceOfResidence String
+  companyName         String
+  investmentCeiling   String
+  howDidYouKnowUs     String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model StartupsForm {
+  id                      Int       @id @default(autoincrement())
+  firstName               String?
+  lastName                String?
+  birthDate               DateTime?
+  email                   String?
+  countryOfResidence      String?
+  provinceOfResidence     String?
+  type                    Type?
+  ideaExplanation         String?
+  getToKnowUs             String?
+  pitchDeckFile           String?
+  businessPlanFile        String?
+  productName             String?
+  siteAddress             String?
+  customerProblem         String?
+  solution                String?
+  productLevel            String?
+  scalable                String?
+  monetizationOfYourPlan  String?
+  structureOfYourSales    String?
+  financialModelFile      String?   @default("")
+  cooperatedWithInvestors String?
+  financialFile           String?
+  customerCharacteristic  String?
+  currentCustomers        String?
+  estimatedMarketSize     String?
+  totalTamSamSom          String?
+  startupRevenue          String?
+  monthlyIncome           String?
+  currentInterestRate     String?
+  currentRaisedFunding    String?
+  neededCapital           String?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+}
+
+model JobForm {
+  id          Int      @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
+  cvFile      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Type {
+  IDEA
+  MVP
+  TRIAL
+  FisrtSale
+  SaleDevelopment
+}
+
+model product {
+  id     Int    @id @default(autoincrement())
+  name   String
+  family String
+  file   String
+}
+
+model Enterpruner {
+  id                  Int    @id @default(autoincrement())
+  email               String
+  companyName         String
+  phone               String
+  website             String
+  fieldOfProfessional String
+}

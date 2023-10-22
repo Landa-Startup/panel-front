@@ -1,0 +1,16 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "cSpell.words": [
+    "diaco",
+    "Landa"
+  ],
+  "liveServer.settings.port": 5501,
+  "i18n-ally.localesPaths": [
+    "locales",
+    "app/i18n",
+    "app/[lng]/i18n",
+    "app/i18n/locales",
+    "app/[lng]/i18n/locales"
+  ]
+}
