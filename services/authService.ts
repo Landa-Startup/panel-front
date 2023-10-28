@@ -8,7 +8,7 @@ const TOKEN_EXPIRATION_TIME = 30 * 60 * 1000; // 30 minutes
 
 export async function login(email: string, password: string) {
   const response = await fetch(
-    'http://127.0.0.1:8000/accounts/api/token/',
+    'https://panel-back.landaholding.com/accounts/api/token/',
     {
       method: 'POST',
       headers: {
