@@ -10,6 +10,7 @@ import NotificationSendForm from '../../common/form/NotificationSendForm';
 import Image from 'next/image';
 import Telephone from '@/components/icons/auth/Login/Telephone';
 import Landa from '@/components/icons/auth/Login/Landa';
+import Spinner from '@/components/common/Spinner';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function LoginPage() {
   const [showNotification, setShowNotification] = useState(true);
 
   const onSubmit = async (formData: LoginFormData) => {
+    setIsSubmitting(true);
     const user = await login(formData.email, formData.password);
     if (user) {
       // read from cookie
@@ -109,9 +111,17 @@ export default function LoginPage() {
           <button
             type="submit"
             className="mt-3 btn btn-wide btn-neutral bg-primary rounded-sm border-none text-white self-center"
-            disabled={send}
+            disabled={isSubmitting}
           >
-            {send ? 'Submitting ....' : 'Submit'}
+            {isSubmitting ? (
+              // Show the loading spinner when submitting
+              <div className="flex justify-center items-center gap-2">
+                <Spinner />
+                Submitting...
+              </div>
+            ) : (
+              'Submit'
+            )}
           </button>
         </form>
         <div className="flex gap-2 items-center absolute left-32 bottom-11">
