@@ -18,7 +18,7 @@ export default function RadioButton({
   return (
     <div>
       {/* Label for the radio buttons */}
-      <label className="text-[#6b6b6b] dark:text-current">{title}</label>
+      <label className="text-[#6b6b6b]">{title}</label>
       <div className="flex flex-col">
         {/* Radio buttons for 'Yes' and 'No' */}
         <div className="flex flex-row mt-4 bg-[#f9f6f3] dark:bg-[#1D232A] p-4 rounded-lg drop-shadow-lg">

@@ -126,7 +126,7 @@ export default function LeaveForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
       <div className="flex gap-2 border-b-2 border-black pb-4 mb-6">
-        <ClipboardData />
+        <ClipboardData size={32}/>
         <span className="text-3xl font-medium font-barlow">
           leave permission Form
         </span>

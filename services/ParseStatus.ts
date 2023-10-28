@@ -2,9 +2,9 @@
 export function getStatusString(status: number) {
   switch (status) {
     case 1:
-      return 'Approved';
-    case 2:
       return 'Pending';
+    case 2:
+      return 'Approved';
     case 3:
       return 'Rejected';
     default:
@@ -16,9 +16,9 @@ export function getTypeOfLeaveString(type: number) {
     
     switch (type) {
         case 1:
-            return 'Vacation';
+            return 'ilness';
         case 2:
-            return 'Sick Leave';
+            return 'entitlement';
         default:
             return 'Unknown';
   }

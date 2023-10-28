@@ -55,7 +55,7 @@ export default function Navbar() {
             <div className="w-10 h-10 relative">
               <Image
                 className="rounded-full border border-black"
-                src={`https://panel.landaholding.com/${userData?.image}`}
+                src={`${process.env.NEXT_PUBLIC_DJANGO_HOST_URL}${userData?.image}`}
                 alt="Manager"
                 layout="fill"
               />
