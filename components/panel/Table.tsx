@@ -1,18 +1,19 @@
 import React from 'react';
 import ClipboardData from '../icons/Panel/ClipboardData';
 import AdDateToJalaliDate from '@/services/AdDateToJalaliDate';
+import Badge from './Badge';
 interface employer {
   first_name: string;
   last_name: string;
   code: string;
-  email:string;
+  email: string;
   id_number: string;
   phone_number: string;
 }
 interface user {
   first_name: string;
   last_name: string;
-  email:string;
+  email: string;
   code: string;
   id_number: string;
   phone_number: string;
@@ -24,7 +25,7 @@ interface TableData {
   start_time: string;
   end_time: string;
   status: string;
-  vacation_status:string;
+  vacation_status: string;
 }
 
 export default function Table({
@@ -40,11 +41,11 @@ export default function Table({
 }) {
   return (
     <div>
-      <div className="flex gap-2 font-medium text-3xl border-b-2 border-black pb-4 mb-6">
-        <ClipboardData />
+      <div className="flex items-center gap-2 font-medium text-xl md:text-3xl border-b-2 border-black pb-4 mb-6">
+        <ClipboardData size={32} />
         <span>{header}</span>
       </div>
-      <table className="table table-sm md:table-md lg:table-lg table-zebra overflow-x-auto max-w-screen-sm">
+      <table className="table table-sm md:table-md lg:table-lg table-zebra overflow-x-auto whitespace-nowrap">
         {/* head */}
         <thead>
           <tr className="bg-tableHeader text-stone-500">
@@ -63,21 +64,13 @@ export default function Table({
                     <tr key={index}>
                       <td>{index + 1}</td>
                       {/* Add this line to display the row number */}
-                      <td>{data.user.first_name} {data.user.last_name}</td>
+                      <td>
+                        {data.user.first_name} {data.user.last_name}
+                      </td>
                       <td>{data.vacation_status}</td>
                       <td>{AdDateToJalaliDate(data.end_time)}</td>
                       <td>{AdDateToJalaliDate(data.start_time)}</td>
-                      <td
-                        className={`badge badge-${
-                          data.status === 'Approved'
-                            ? 'success'
-                            : data.status === 'Pending'
-                            ? 'info'
-                            : 'error'
-                        } md:mt-2.5`}
-                      >
-                        {data.status}
-                      </td>
+                      <Badge data={data} />
                     </tr>
                   ))}
                 </>
@@ -95,17 +88,7 @@ export default function Table({
                       {/* <td>{data.typeOfLeave}</td> */}
                       <td>{AdDateToJalaliDate(data.end_time)}</td>
                       <td>{AdDateToJalaliDate(data.start_time)}</td>
-                      <td
-                        className={`badge badge-${
-                          data.status === 'Approved'
-                            ? 'success'
-                            : data.status === 'Pending'
-                            ? 'info'
-                            : 'error'
-                        } md:mt-2.5`}
-                      >
-                        {data.status}
-                      </td>
+                      <Badge data={data} />
                     </tr>
                   ))}
                 </>
@@ -118,22 +101,17 @@ export default function Table({
                     <tr key={index}>
                       <td>{index + 1}</td>
                       {/* Add this line to display the row number */}
-                      <td>{data.user.first_name} {data.user.last_name}</td>
-                      <td>{data.user.employer.first_name} {data.user.employer.last_name}</td>
+                      <td>
+                        {data.user.first_name} {data.user.last_name}
+                      </td>
+                      <td>
+                        {data.user.employer.first_name}{' '}
+                        {data.user.employer.last_name}
+                      </td>
                       <td>{data.vacation_status}</td>
                       <td>{AdDateToJalaliDate(data.end_time)}</td>
                       <td>{AdDateToJalaliDate(data.start_time)}</td>
-                      <td
-                        className={`badge badge-${
-                          data.status === 'Approved'
-                            ? 'success'
-                            : data.status === 'Pending'
-                            ? 'info'
-                            : 'error'
-                        } md:mt-2.5`}
-                      >
-                        {data.status}
-                      </td>
+                      <Badge data={data} />
                     </tr>
                   ))}
                 </>
@@ -142,7 +120,6 @@ export default function Table({
               return <></>;
             }
           })()}
-
         </tbody>
       </table>
     </div>
