@@ -84,7 +84,7 @@ export default function TableContainer() {
     }
   }, []);
   return (
-    <div className="flex flex-col gap-14 overflow-x-auto mx-auto mt-10">
+    <div className="flex flex-col gap-14 overflow-x-auto mx-2 md:mx-auto mt-10">
       {(() => {
         if (currentUser?.role === 'manager') {
           return (

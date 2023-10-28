@@ -45,83 +45,85 @@ export default function Table({
         <ClipboardData size={32} />
         <span>{header}</span>
       </div>
-      <table className="table table-sm md:table-md lg:table-lg table-zebra overflow-x-auto whitespace-nowrap">
-        {/* head */}
-        <thead>
-          <tr className="bg-tableHeader text-stone-500">
-            {tableHead.map((head, index) => (
-              <th key={index}>{head}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {(() => {
-            if (tableType == 'employee') {
-              return (
-                <>
-                  {' '}
-                  {tableData.map((data, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      {/* Add this line to display the row number */}
-                      <td>
-                        {data.user.first_name} {data.user.last_name}
-                      </td>
-                      <td>{data.vacation_status}</td>
-                      <td>{AdDateToJalaliDate(data.end_time)}</td>
-                      <td>{AdDateToJalaliDate(data.start_time)}</td>
-                      <Badge data={data} />
-                    </tr>
-                  ))}
-                </>
-              );
-            } else if (tableType == 'my') {
-              return (
-                <>
-                  {' '}
-                  {tableData.map((data, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      {/* Add this line to display the row number */}
-                      {/* <td>{data.first_name}</td>
+      <div className="w-[300px] md:w-full overflow-auto">
+        <table className="table table-sm md:table-md lg:table-lg table-zebra overflow-x-auto whitespace-nowrap">
+          {/* head */}
+          <thead>
+            <tr className="bg-tableHeader text-stone-500">
+              {tableHead.map((head, index) => (
+                <th key={index}>{head}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {(() => {
+              if (tableType == 'employee') {
+                return (
+                  <>
+                    {' '}
+                    {tableData.map((data, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        {/* Add this line to display the row number */}
+                        <td>
+                          {data.user.first_name} {data.user.last_name}
+                        </td>
+                        <td>{data.vacation_status}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
+                        <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <Badge data={data} />
+                      </tr>
+                    ))}
+                  </>
+                );
+              } else if (tableType == 'my') {
+                return (
+                  <>
+                    {' '}
+                    {tableData.map((data, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        {/* Add this line to display the row number */}
+                        {/* <td>{data.first_name}</td>
                       <td>{data.last_name}</td> */}
-                      {/* <td>{data.typeOfLeave}</td> */}
-                      <td>{AdDateToJalaliDate(data.end_time)}</td>
-                      <td>{AdDateToJalaliDate(data.start_time)}</td>
-                      <Badge data={data} />
-                    </tr>
-                  ))}
-                </>
-              );
-            } else if (tableType == 'all') {
-              return (
-                <>
-                  {' '}
-                  {tableData.map((data, index) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      {/* Add this line to display the row number */}
-                      <td>
-                        {data.user.first_name} {data.user.last_name}
-                      </td>
-                      <td>
-                        {data.user.employer.first_name}{' '}
-                        {data.user.employer.last_name}
-                      </td>
-                      <td>{data.vacation_status}</td>
-                      <td>{AdDateToJalaliDate(data.end_time)}</td>
-                      <td>{AdDateToJalaliDate(data.start_time)}</td>
-                      <Badge data={data} />
-                    </tr>
-                  ))}
-                </>
-              );
-            } else {
-              return <></>;
-            }
-          })()}
-        </tbody>
-      </table>
+                        {/* <td>{data.typeOfLeave}</td> */}
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
+                        <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <Badge data={data} />
+                      </tr>
+                    ))}
+                  </>
+                );
+              } else if (tableType == 'all') {
+                return (
+                  <>
+                    {' '}
+                    {tableData.map((data, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        {/* Add this line to display the row number */}
+                        <td>
+                          {data.user.first_name} {data.user.last_name}
+                        </td>
+                        <td>
+                          {data.user.employer.first_name}{' '}
+                          {data.user.employer.last_name}
+                        </td>
+                        <td>{data.vacation_status}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
+                        <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <Badge data={data} />
+                      </tr>
+                    ))}
+                  </>
+                );
+              } else {
+                return <></>;
+              }
+            })()}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
