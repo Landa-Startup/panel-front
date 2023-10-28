@@ -95,8 +95,8 @@ export default function TableContainer() {
                 'Employee Name',
                 'Employer Name',
                 'Type Of Leave',
-                'Date',
-                'Time',
+                'Start Time',
+                'End Time',
                 'Status',
               ]}
               tableData={allData.map((data, index) => ({
@@ -124,8 +124,8 @@ export default function TableContainer() {
                   'No.',
                   'Employer Name',
                   'Type Of Leave',
-                  'Date',
-                  'Time',
+                  'Start Time',
+                  'End Time',
                   'Status',
                 ]}
                 tableData={employee.map((data, index) => ({
@@ -157,8 +157,8 @@ export default function TableContainer() {
                   'Employee Name',
                   'Employer Name',
                   'Type Of Leave',
-                  'Date',
-                  'Time',
+                  'Start Time',
+                  'End Time',
                   'Status',
                 ]}
                 tableData={myData}
