@@ -8,7 +8,7 @@ const TOKEN_EXPIRATION_TIME = 30 * 60 * 1000; // 30 minutes
 
 export async function login(email: string, password: string) {
   const response = await fetch(
-    'https://panel-back.landaholding.com/accounts/api/token/',
+    `${process.env.NEXT_PUBLIC_DJANGO_HOST_URL}accounts/api/token/`,
     {
       method: 'POST',
       headers: {

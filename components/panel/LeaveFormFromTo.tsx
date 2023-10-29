@@ -21,13 +21,13 @@ export default function LeaveFormFromTo({
           register={register}
           errors={errors}
           nameInput="leaveStartTime"
-          type="string"
+          type="time"
           label=""
           required="Start time is Required."
           patternValue=""
           patternMessage="Please enter a valid Start time (e.g., 2001/02/11)"
           placeholder="12:21"
-          className="w-[130px] h-[45px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px]"
+          className="w-[150px] h-[60px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px] md:w-[180px]"
           labelClass="text-[#6b6b6b] dark:text-current"
         />
         <span>To</span>
@@ -35,13 +35,13 @@ export default function LeaveFormFromTo({
           register={register}
           errors={errors}
           nameInput="leaveEndTime"
-          type="string"
+          type="time"
           label=""
           required="End Time is Required."
           patternValue=""
           patternMessage="Please enter a valid End Time (e.g., 2001/02/11)"
           placeholder="12:21"
-          className="w-[130px] h-[45px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px]"
+          className="w-[150px] h-[60px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px] md:w-[180px]"
           labelClass="text-[#6b6b6b] dark:text-current"
         />
       </div>
