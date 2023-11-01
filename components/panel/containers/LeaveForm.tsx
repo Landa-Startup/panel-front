@@ -12,6 +12,9 @@ import apiClient from '@/utils/api';
 import { DecodedToken } from 'app/types/global';
 import { parseCookies } from 'nookies';
 import Input from '@/components/common/form/Input';
+import RadioButton from '@/components/common/RadioButton';
+import jalaliDateToAdDate from '@/services/jalaliDateToAdDate';
+import {JBDateInput} from 'jb-date-input-react';
 
 interface LeaveFormData {
   leaveType: number;
@@ -69,13 +72,34 @@ export default function LeaveForm() {
     fetchCsrfToken();
   }, []);
 
+    // handle radio button
+    const [selectedRadio, setSelectedRadio] = useState('1');
+    const [start, setStart] = useState('');
+    const [end, setEnd] = useState('');
+
+    const handleRadio = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedRadio(event.target.value);
+    };
+
+    const handleStart = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setStart(event.target.value);
+    };
+    const handleEnd = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setEnd(event.target.value);
+    };
   const onSubmit = async (formData: LeaveFormData) => {
     setIsSubmitting(true);
     setSend(true);
+    let startDate = String(jalaliDateToAdDate(start)).replace(/\//g, "-");
+    let endDate = String(jalaliDateToAdDate(end)).replace(/\//g, "-");
+    console.log(startDate)
+    console.log(endDate)
+    console.log(`${startDate}T${formData.leaveStartTime}:00+03:30`);
+    console.log(`${endDate}T${formData.leaveEndTime}:00+03:30`);
     const sendFormData = new FormData();
-    sendFormData.append('start_time', String(`${formData.leaveStartDate}T${formData.leaveStartTime}`));
-    sendFormData.append('end_time', String(`${formData.leaveEndDate}T${formData.leaveEndTime}`));
-    sendFormData.append('vacation_status', String(formData.leaveType));
+    sendFormData.append('start_time', `${startDate}T${formData.leaveStartTime}:00+03:30`);
+    sendFormData.append('end_time', `${endDate}T${formData.leaveEndTime}:00+03:30`);
+    sendFormData.append('vacation_status', String(selectedRadio));
     sendFormData.append('user', String(user_id));
 
 
@@ -119,22 +143,29 @@ export default function LeaveForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
       <div className="flex gap-2 border-b-2 border-black pb-4 mb-6">
-        <ClipboardData />
+        <ClipboardData size={32}/>
         <span className="text-3xl font-medium font-barlow">
           leave permission Form
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-9">
-        {/* <LeaveFormRadio
-          title="Leave (daily - hourly)"
-          items={['Hourly leave', 'Day off']}
-        /> */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
+      <JBDateInput label="Start Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => {setStart(event.target.value)}} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
+        <JBDateInput label="End Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => {setEnd(event.target.value)}} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
         <LeaveFormFromTo
           title="I want leave from"
           register={register}
           errors={errors}
         />
-        <Input
+        <RadioButton
+        register={register}
+        errors={errors}
+        name='vacation_status'
+        required='this is required!'
+        selectedRadio={selectedRadio}
+        handleRadioChange={handleRadio}
+        title='Type Of Leave Form'
+        />
+        {/* <Input
           register={register}
           errors={errors}
           nameInput="leaveStartDate"
@@ -159,15 +190,8 @@ export default function LeaveForm() {
           placeholder="Enter your End Date"
           className="w-full mt-3 mb-1 input input-bordered drop-shadow-lg placeholder-[#b2b1b0] dark:placeholder-[#9CA3AF]"
           labelClass="text-[#6b6b6b] dark:text-current"
-        />
-        {/* <LeaveFormDate title="From Date" /> */}
-        {/* <LeaveFormDate title="To Date" /> */}
-        <LeaveFormRadio
-          title="Type of leave"
-          items={['entitlement', 'illness']}
-          register={register}
-          errors={errors}
-        />
+        /> */}
+
       </div>
       <div className="flex">
         <button

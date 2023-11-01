@@ -4,46 +4,47 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
 import { DecodedToken } from 'app/types/global';
 import { fetchData } from '@/utils/fetchData';
-
+import { getStatusString, getTypeOfLeaveString } from '@/services/ParseStatus';
 
 interface employer {
   first_name: string;
   last_name: string;
   code: string;
-  email:string;
+  email: string;
   id_number: string;
   phone_number: string;
 }
 interface user {
   first_name: string;
   last_name: string;
-  email:string;
+  email: string;
   code: string;
   id_number: string;
   phone_number: string;
   employer: employer;
 }
 
-
 interface TableData {
   user: user;
   start_time: string;
   end_time: string;
   status: string;
-  vacation_status:string;
+  vacation_status: string;
 }
+const cookies = parseCookies();
+const currentUser: DecodedToken | null = JSON.parse(cookies.currentUser);
 
 export default function TableContainer() {
-  const cookies = parseCookies();
-  const currentUser: DecodedToken | null = JSON.parse(cookies.currentUser);
-
   const [allData, setAllData] = useState<TableData[]>([]);
   const [employee, setEmployee] = useState<TableData[]>([]);
   const [myData, setMyData] = useState<TableData[]>([]);
+
   const getAllData = () => {
     fetchData('panel/get-vacation-forms')
       .then((result) => {
         setAllData(result);
+        console.log(result);
+        console.log(getTypeOfLeaveString(1));
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -80,11 +81,10 @@ export default function TableContainer() {
     } else if (currentUser?.role == 'mentor') {
       employeeData();
       fetchMyData();
-      console.log('haha');
     }
   }, []);
   return (
-    <div className="flex flex-col gap-14 overflow-x-auto mx-auto mt-10">
+    <div className="flex flex-col gap-14 overflow-x-auto mx-2 md:mx-auto mt-10">
       {(() => {
         if (currentUser?.role === 'manager') {
           return (
@@ -95,12 +95,19 @@ export default function TableContainer() {
                 'Employee Name',
                 'Employer Name',
                 'Type Of Leave',
-                'Date',
-                'Time',
+                'Start Time',
+                'End Time',
                 'Status',
               ]}
-              tableData={allData}
-              tableType='all'
+              tableData={allData.map((data, index) => ({
+                ...data,
+                // Map the status and type of leave to strings
+                status: getStatusString(parseInt(data.status)),
+                vacation_status: getTypeOfLeaveString(
+                  parseInt(data.vacation_status)
+                ), // Add this line
+              }))}
+              tableType="all"
             />
           );
         } else {
@@ -111,19 +118,25 @@ export default function TableContainer() {
         if (currentUser?.role === 'manager' || currentUser?.role === 'mentor') {
           return (
             <div>
-              {' '}
               <Table
                 header="Employers leave permissions"
                 tableHead={[
                   'No.',
                   'Employer Name',
                   'Type Of Leave',
-                  'Date',
-                  'Time',
+                  'Start Time',
+                  'End Time',
                   'Status',
                 ]}
-                tableData={employee}
-                tableType='employee'
+                tableData={employee.map((data, index) => ({
+                  ...data,
+                  // Map the status and type of leave to strings
+                  status: getStatusString(parseInt(data.status)),
+                  vacation_status: getTypeOfLeaveString(
+                    parseInt(data.vacation_status)
+                  ), // Add this line
+                }))}
+                tableType="employee"
               />
             </div>
           );
@@ -144,12 +157,12 @@ export default function TableContainer() {
                   'Employee Name',
                   'Employer Name',
                   'Type Of Leave',
-                  'Date',
-                  'Time',
+                  'Start Time',
+                  'End Time',
                   'Status',
                 ]}
                 tableData={myData}
-                tableType='my'
+                tableType="my"
               />
             </div>
           );

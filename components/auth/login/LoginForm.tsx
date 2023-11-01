@@ -10,6 +10,7 @@ import NotificationSendForm from '../../common/form/NotificationSendForm';
 import Image from 'next/image';
 import Telephone from '@/components/icons/auth/Login/Telephone';
 import Landa from '@/components/icons/auth/Login/Landa';
+import Spinner from '@/components/common/Spinner';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -27,13 +28,35 @@ export default function LoginPage() {
   const [showNotification, setShowNotification] = useState(true);
 
   const onSubmit = async (formData: LoginFormData) => {
-    const user = await login(formData.email, formData.password);
-    if (user) {
-      // read from cookie
-      const cookies = parseCookies();
-      const currentUser: DecodedToken = JSON.parse(cookies.currentUser);
+    setIsSubmitting(true);
+    setSend(true);
+    try {
+      const user = await login(formData.email, formData.password);
+      if (user) {
+        setIsSuccess(true);
+        setShowNotification(true);
+        setSend(false);
+        console.log('Form data sent successfully!');
+        // read from cookie
+        const timeout = setTimeout(() => {
+          setShowNotification(false);
+        }, 10000); // 10 seconds in milliseconds
+        const cookies = parseCookies();
+        const currentUser: DecodedToken = JSON.parse(cookies.currentUser);
 
-      router.push(`/dashboard/${currentUser.role}`);
+        router.push(`/dashboard/${currentUser.role}`);
+      }
+    } catch (error) {
+      setShowNotification(true);
+      setSend(false);
+      setIsSuccess(false);
+      //TODO: remove below code after testing
+      console.error('Error sending form data:', error);
+      const timeout = setTimeout(() => {
+        setShowNotification(false);
+        // setIsSubmitting(false)
+      }, 10000); // 10 seconds in milliseconds
+
     }
   };
 
@@ -57,47 +80,47 @@ export default function LoginPage() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col space-y-9"
         >
-          <input
-            id="email"
-            type="email"
-            required
-            {...register('email', {
-              required: 'Your email is required.',
-              //     value: /^[a-z ,.'-]+$/i,
-              //     message: 'Enter a valid email.',
-              // },
-            })}
-            placeholder="Email"
-            className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${
-              errors.email ? 'border-red-500' : ''
-            }`}
-          />
-          {errors.email && (
-            <span className="mt-2 text-sm text-yellow-500">
-              {errors.email.message}
-            </span>
-          )}
-          <input
-            id="password"
-            type="password"
-            required
-            {...register('password', {
-              required: 'Your password is required.',
-              minLength: {
-                value: 5,
-                message: 'Your password must be at least 8 characters long.',
-              },
-            })}
-            placeholder="Password"
-            className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${
-              errors.password ? 'border-red-500' : ''
-            }`}
-          />
-          {errors.password && (
-            <span className="mt-2 text-sm text-yellow-500">
-              {errors.password.message}
-            </span>
-          )}
+          <div>
+            <input
+              id="email"
+              type="email"
+              {...register('email', {
+                required: 'Your email is required.',
+                pattern: {
+                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  message: 'Email is not valid',
+                },
+              })}
+              placeholder="Email"
+              className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${
+                errors.email ? 'border-red-500' : ''
+              }`}
+            />
+            {errors.email && (
+              <p style={{ color: 'red' }}>{errors.email.message}</p>
+            )}
+          </div>
+          <div>
+            {' '}
+            <input
+              id="password"
+              type="password"
+              {...register('password', {
+                required: 'Your password is required.',
+                minLength: {
+                  value: 5,
+                  message: 'Your password must be at least 8 characters long.',
+                },
+              })}
+              placeholder="Password"
+              className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${
+                errors.password ? 'border-red-500' : ''
+              }`}
+            />
+            {errors.password && (
+              <p style={{ color: 'red' }}>{errors.password.message}</p>
+            )}
+          </div>
           <div className="form-control self-start">
             <label className="label cursor-pointer flex-row-reverse gap-2">
               <span className="label-text text-white font-barlow text-xl">
@@ -111,9 +134,23 @@ export default function LoginPage() {
             className="mt-3 btn btn-wide btn-neutral bg-primary rounded-sm border-none text-white self-center"
             disabled={send}
           >
-            {send ? 'Submitting ....' : 'Submit'}
+            {send ? (
+              // Show the loading spinner when submitting
+              <div className="flex justify-center items-center gap-2">
+                <Spinner />
+                Submitting...
+              </div>
+            ) : (
+              'Submit'
+            )}
           </button>
         </form>
+        <NotificationSendForm
+          submitting={isSubmitting}
+          success={isSuccess}
+          sendStatus={send}
+          show={showNotification}
+        />
         <div className="flex gap-2 items-center absolute left-32 bottom-11">
           <Telephone />
           <div className="flex flex-col text-black">

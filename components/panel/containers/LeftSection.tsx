@@ -27,7 +27,7 @@ export default function LeftSection({
           }`}
           onClick={() => handleMenuClick('leave')}
         >
-          <ClipboardData />
+          <ClipboardData size={16} />
           <span className="hidden md:block cursor-pointer">
             Leave Permissions
           </span>
