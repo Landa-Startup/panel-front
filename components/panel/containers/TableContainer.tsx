@@ -32,8 +32,7 @@ interface TableData {
   vacation_status: string;
 }
 const cookies = parseCookies();
-const currentUser: DecodedToken | null = JSON.parse(cookies.currentUser);
-
+const currentUser: DecodedToken | null = cookies.currentUser ? JSON.parse(cookies.currentUser) : null;
 export default function TableContainer() {
   const [allData, setAllData] = useState<TableData[]>([]);
   const [employee, setEmployee] = useState<TableData[]>([]);

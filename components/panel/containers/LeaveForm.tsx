@@ -14,7 +14,7 @@ import { parseCookies } from 'nookies';
 import Input from '@/components/common/form/Input';
 import RadioButton from '@/components/common/RadioButton';
 import jalaliDateToAdDate from '@/services/jalaliDateToAdDate';
-import {JBDateInput} from 'jb-date-input-react';
+import { JBDateInput } from 'jb-date-input-react';
 
 interface LeaveFormData {
   leaveType: number;
@@ -44,7 +44,7 @@ export default function LeaveForm() {
 
   const [formData, setFormData] = useState<LeaveFormData>(initialLeaveForm);
   const cookies = parseCookies();
-  const currentUser: DecodedToken | null = JSON.parse(cookies.currentUser);
+  const currentUser: DecodedToken | null = cookies.currentUser ? JSON.parse(cookies.currentUser) : null;
   const jwt_token = currentUser?.jwt;
   const user_id = currentUser?.user_id;
   const [csrfToken, setCsrfToken] = useState('');
@@ -54,7 +54,7 @@ export default function LeaveForm() {
   const [Send, setSend] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
 
-  
+
   const router = useRouter();
 
   const onCancel = () => {
@@ -72,21 +72,21 @@ export default function LeaveForm() {
     fetchCsrfToken();
   }, []);
 
-    // handle radio button
-    const [selectedRadio, setSelectedRadio] = useState('1');
-    const [start, setStart] = useState('');
-    const [end, setEnd] = useState('');
+  // handle radio button
+  const [selectedRadio, setSelectedRadio] = useState('1');
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
 
-    const handleRadio = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setSelectedRadio(event.target.value);
-    };
+  const handleRadio = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedRadio(event.target.value);
+  };
 
-    const handleStart = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setStart(event.target.value);
-    };
-    const handleEnd = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setEnd(event.target.value);
-    };
+  const handleStart = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setStart(event.target.value);
+  };
+  const handleEnd = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setEnd(event.target.value);
+  };
   const onSubmit = async (formData: LeaveFormData) => {
     setIsSubmitting(true);
     setSend(true);
@@ -143,54 +143,28 @@ export default function LeaveForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
       <div className="flex gap-2 border-b-2 border-black pb-4 mb-6">
-        <ClipboardData size={32}/>
+        <ClipboardData size={32} />
         <span className="text-3xl font-medium font-barlow">
           leave permission Form
         </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
-      <JBDateInput label="Start Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => {setStart(event.target.value)}} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
-        <JBDateInput label="End Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => {setEnd(event.target.value)}} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
+        <JBDateInput label="Start Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setStart(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
+        <JBDateInput label="End Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setEnd(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
         <LeaveFormFromTo
           title="I want leave from"
           register={register}
           errors={errors}
         />
         <RadioButton
-        register={register}
-        errors={errors}
-        name='vacation_status'
-        required='this is required!'
-        selectedRadio={selectedRadio}
-        handleRadioChange={handleRadio}
-        title='Type Of Leave Form'
-        />
-        {/* <Input
           register={register}
           errors={errors}
-          nameInput="leaveStartDate"
-          type="date"
-          label="Start Date"
-          required="Start Date is Required."
-          patternValue="(?:\d{1,2}[-/\s]\d{1,2}[-/\s]'?\d{2,4})|(?:\d{2,4}[-/\s]\d{1,2}[-/\s]\d{1,2})|(?:(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)[\s-/,]*?\d{1,2}(?:\s)*(?:rd|th|st)?(?:\s)*[-/,]?(?:\s)*'?\d{2,4})|(?:\d{1,2}(?:\s)*(?:rd|th|st)?(?:\s)*(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)(?:\s)*?[-/,]?(?:\s)*'?\d{2,4})"
-          patternMessage="Please enter a valid Start Date (e.g., 2001/02/11)"
-          placeholder="Enter your Start Date"
-          className="w-full mt-3 mb-1 input input-bordered drop-shadow-lg placeholder-[#b2b1b0] dark:placeholder-[#9CA3AF]"
-          labelClass="text-[#6b6b6b] dark:text-current"
+          name='vacation_status'
+          required='this is required!'
+          selectedRadio={selectedRadio}
+          handleRadioChange={handleRadio}
+          title='Type Of Leave Form'
         />
-        <Input
-          register={register}
-          errors={errors}
-          nameInput="leaveEndDate"
-          type="date"
-          label="End Date"
-          required="End Date is Required."
-          patternValue="(?:\d{1,2}[-/\s]\d{1,2}[-/\s]'?\d{2,4})|(?:\d{2,4}[-/\s]\d{1,2}[-/\s]\d{1,2})|(?:(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)[\s-/,]*?\d{1,2}(?:\s)*(?:rd|th|st)?(?:\s)*[-/,]?(?:\s)*'?\d{2,4})|(?:\d{1,2}(?:\s)*(?:rd|th|st)?(?:\s)*(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec)(?:\s)*?[-/,]?(?:\s)*'?\d{2,4})"
-          patternMessage="Please enter a valid End Date (e.g., 2001/02/11)"
-          placeholder="Enter your End Date"
-          className="w-full mt-3 mb-1 input input-bordered drop-shadow-lg placeholder-[#b2b1b0] dark:placeholder-[#9CA3AF]"
-          labelClass="text-[#6b6b6b] dark:text-current"
-        /> */}
 
       </div>
       <div className="flex">

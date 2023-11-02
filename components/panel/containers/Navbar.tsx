@@ -53,18 +53,18 @@ export default function Navbar() {
           </svg>
           <div className="flex gap-4 items-center">
             <div className="w-10 h-10 relative">
-              <Image
+              {/* <Image
                 className="rounded-full border border-black"
                 src={`${process.env.NEXT_PUBLIC_DJANGO_HOST_URL}${userData?.image}`}
                 alt="Manager"
                 layout="fill"
-              />
+              /> */}
             </div>
             <div className="flex text-[#222] text-xl tracking-[0.5px] items-center gap-2">
               <span>
                 {userData?.first_name} {userData?.last_name}
               </span>
-              <svg
+              {/* <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
@@ -76,7 +76,7 @@ export default function Navbar() {
                   fill-rule="evenodd"
                   d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
                 />
-              </svg>
+              </svg> */}
             </div>
           </div>
           <div className="flex items-center gap-2">

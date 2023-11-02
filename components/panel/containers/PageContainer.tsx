@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import LeftSection from './LeftSection';
 import MainSection from './MainSection';
-import Dashboard from 'app/dashboard/page';
 import LeaveForm from './LeaveForm';
 import TableContainer from './TableContainer';
 
