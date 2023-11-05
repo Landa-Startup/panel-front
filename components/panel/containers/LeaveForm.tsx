@@ -63,10 +63,14 @@ export default function LeaveForm() {
 
   useEffect(() => {
     async function fetchCsrfToken() {
-      const token = await GetCsrfToken(
-        'https://panel.landaholding.com/get-csrf-token'
-      );
-      setCsrfToken(token);
+      try{
+        const token = await GetCsrfToken(
+          'https://panel.landaholding.com/get-csrf-token'
+        );
+        setCsrfToken(token);
+      }catch(error){
+        console.log(error);
+      }
     }
 
     fetchCsrfToken();
@@ -149,8 +153,8 @@ export default function LeaveForm() {
         </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
-        <JBDateInput label="Start Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setStart(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
-        <JBDateInput label="End Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setEnd(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}></JBDateInput>
+        <JBDateInput label="Start Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setStart(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}/>
+        <JBDateInput label="End Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setEnd(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}/>
         <LeaveFormFromTo
           title="I want leave from"
           register={register}
