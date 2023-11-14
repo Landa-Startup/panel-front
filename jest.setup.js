@@ -1,3 +1,8 @@
+// text-encoder.mock.ts
+import { TextEncoder } from 'util';
+
+global.TextEncoder = TextEncoder;
+
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({

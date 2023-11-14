@@ -1,4 +1,5 @@
 'use client';
+import IconDown from '@/components/icons/IconDown';
 import { DecodedToken } from 'app/types/global';
 import Image from 'next/image';
 import { parseCookies } from 'nookies';
@@ -16,7 +17,7 @@ export default function Navbar() {
 
   return (
     <div className="flex h-[calc(100vh)-5px]">
-      <div className="flex bg-primary w-2/12 h-16 items-end pl-9 pb-2">
+      <div className="flex flex-col md:flex-row bg-primary w-2/12 h-16 items-center md:items-end md:pl-9 md:pb-2 p-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="38"
@@ -35,54 +36,42 @@ export default function Navbar() {
             />
           </g>
         </svg>
-        <span className="text-xl font-semibold tracking-[2px] text-whiteGold">
+        <span className="md:text-xl font-semibold tracking-[2px] text-whiteGold">
           LANDA
         </span>
       </div>
       <div className="bg-[#CCB598] h-16 w-10/12">
-        <div className="flex justify-end h-16 items-center gap-12 mr-16">
+        <div className="flex justify-end h-16 items-center gap-5 md:gap-12 md:mr-16">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
+            width="24"
+            height="24"
             fill="currentColor"
             className="bi bi-bell-fill text-[#222]"
             viewBox="0 0 16 16"
           >
             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
           </svg>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-2 md:gap-4 items-center">
             <div className="w-10 h-10 relative">
-              {/* <Image
+              <Image
                 className="rounded-full border border-black"
                 src={`${process.env.NEXT_PUBLIC_DJANGO_HOST_URL}${userData?.image}`}
                 alt="Manager"
                 layout="fill"
-              /> */}
+              />
             </div>
             <div className="flex text-[#222] text-xl tracking-[0.5px] items-center gap-2">
-              <span>
+              <span className="capitalize">
                 {userData?.first_name} {userData?.last_name}
               </span>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-chevron-down"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                />
-              </svg> */}
+              <IconDown />
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="relative w-11 h-9">
+            <div className="relative w-6 h-5">
               <Image
-                src="/static/images/31634482b3506c6b3b15d5790cc887d5.png"
+                src="/static/images/Academy/USA.svg"
                 alt="USA"
                 layout="fill"
               />
@@ -96,7 +85,7 @@ export default function Navbar() {
               viewBox="0 0 16 16"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
               />
             </svg>

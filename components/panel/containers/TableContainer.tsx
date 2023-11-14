@@ -42,8 +42,6 @@ export default function TableContainer() {
     fetchData('panel/get-vacation-forms')
       .then((result) => {
         setAllData(result);
-        console.log(result);
-        console.log(getTypeOfLeaveString(1));
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -65,7 +63,6 @@ export default function TableContainer() {
     fetchData('panel/my-vacation-form')
       .then((result) => {
         setMyData(result);
-        // console.log('mentor');
       })
       .catch((error) => {
         console.error('Error fetching data:', error);

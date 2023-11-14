@@ -44,7 +44,9 @@ export default function LeaveForm() {
 
   const [formData, setFormData] = useState<LeaveFormData>(initialLeaveForm);
   const cookies = parseCookies();
-  const currentUser: DecodedToken | null = cookies.currentUser ? JSON.parse(cookies.currentUser) : null;
+  const currentUser: DecodedToken | null = cookies.currentUser
+    ? JSON.parse(cookies.currentUser)
+    : null;
   const jwt_token = currentUser?.jwt;
   const user_id = currentUser?.user_id;
   const [csrfToken, setCsrfToken] = useState('');
@@ -53,7 +55,6 @@ export default function LeaveForm() {
   // TODO: change Send to send(start with small letter)
   const [Send, setSend] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
-
 
   const router = useRouter();
 
@@ -94,18 +95,19 @@ export default function LeaveForm() {
   const onSubmit = async (formData: LeaveFormData) => {
     setIsSubmitting(true);
     setSend(true);
-    let startDate = String(jalaliDateToAdDate(start)).replace(/\//g, "-");
-    let endDate = String(jalaliDateToAdDate(end)).replace(/\//g, "-");
-    console.log(startDate)
-    console.log(endDate)
-    console.log(`${startDate}T${formData.leaveStartTime}:00+03:30`);
-    console.log(`${endDate}T${formData.leaveEndTime}:00+03:30`);
+    let startDate = String(jalaliDateToAdDate(start)).replace(/\//g, '-');
+    let endDate = String(jalaliDateToAdDate(end)).replace(/\//g, '-');
     const sendFormData = new FormData();
-    sendFormData.append('start_time', `${startDate}T${formData.leaveStartTime}:00+03:30`);
-    sendFormData.append('end_time', `${endDate}T${formData.leaveEndTime}:00+03:30`);
+    sendFormData.append(
+      'start_time',
+      `${startDate}T${formData.leaveStartTime}:00+03:30`
+    );
+    sendFormData.append(
+      'end_time',
+      `${endDate}T${formData.leaveEndTime}:00+03:30`
+    );
     sendFormData.append('vacation_status', String(selectedRadio));
     sendFormData.append('user', String(user_id));
-
 
     try {
       const response = await apiClient.post(
@@ -115,11 +117,10 @@ export default function LeaveForm() {
           headers: {
             'content-type': 'application/json',
             'X-CSRFToken': csrfToken,
-            'Authorization': `Bearer ${jwt_token}`,
+            Authorization: `Bearer ${jwt_token}`,
           },
         }
       );
-
 
       setIsSuccess(true);
       setShowNotification(true);
@@ -153,8 +154,28 @@ export default function LeaveForm() {
         </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
-        <JBDateInput label="Start Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setStart(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}/>
-        <JBDateInput label="End Date" format="YYYY/MM/DD" valueType="JALALI" value="1399-05-01T12:05:39.530Z" onChange={(event) => { setEnd(event.target.value) }} style='--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px;' required={true}/>
+        <JBDateInput
+          label="Start Date"
+          format="YYYY/MM/DD"
+          valueType="JALALI"
+          value="1399-05-01T12:05:39.530Z"
+          onChange={(event) => {
+            setStart(event.target.value);
+          }}
+          style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
+          required={true}
+        ></JBDateInput>
+        <JBDateInput
+          label="End Date"
+          format="YYYY/MM/DD"
+          valueType="JALALI"
+          value="1399-05-01T12:05:39.530Z"
+          onChange={(event) => {
+            setEnd(event.target.value);
+          }}
+          style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
+          required={true}
+        ></JBDateInput>
         <LeaveFormFromTo
           title="I want leave from"
           register={register}
@@ -163,13 +184,12 @@ export default function LeaveForm() {
         <RadioButton
           register={register}
           errors={errors}
-          name='vacation_status'
-          required='this is required!'
+          name="vacation_status"
+          required="this is required!"
           selectedRadio={selectedRadio}
           handleRadioChange={handleRadio}
-          title='Type Of Leave Form'
+          title="Type Of Leave Form"
         />
-
       </div>
       <div className="flex">
         <button

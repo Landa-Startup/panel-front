@@ -61,7 +61,7 @@
 //       fetchMyData();
 //     }
 //   }, []);
-//   console.log(employee);
+
 //   return (
 //     <div className="flex flex-col gap-14 overflow-x-auto mx-auto mt-10">
 //       {(() => {
@@ -131,6 +131,6 @@
 //       })()}
 //       <LeaveForm />
 //     </div>
-   
+
 //   );
 // }

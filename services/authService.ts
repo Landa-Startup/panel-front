@@ -22,13 +22,11 @@ export async function login(email: string, password: string) {
     const { access } = await response.json();
     const decodedToken = jwtDecode<DecodedToken>(access);
     decodedToken.jwt = access;
-    // console.log(decodedToken);
     if (decodedToken) {
       setCookie(null, 'currentUser', JSON.stringify(decodedToken), {
         maxAge: TOKEN_EXPIRATION_TIME,
         path: '/',
       });
-      // console.log("cookies:", parseCookies());
       // setCookie(null, 'refreshToken', refreshToken, {
       //     maxAge: 30 * 24 * 60 * 60, // 30 days
       //     path: '/',
