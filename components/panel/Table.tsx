@@ -60,7 +60,6 @@ export default function Table({
               if (tableType == 'employee') {
                 return (
                   <>
-                    {' '}
                     {tableData.map((data, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
@@ -79,7 +78,6 @@ export default function Table({
               } else if (tableType == 'my') {
                 return (
                   <>
-                    {' '}
                     {tableData.map((data, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
@@ -97,7 +95,6 @@ export default function Table({
               } else if (tableType == 'all') {
                 return (
                   <>
-                    {' '}
                     {tableData.map((data, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>

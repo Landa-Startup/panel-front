@@ -26,7 +26,6 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
   const handleLinkClick = () => {
     // setIsMenuOpen(false);
     if (!drawerRef.current) {
-      console.log(drawerRef);
       return;
     }
     drawerRef.current.click();

@@ -93,10 +93,6 @@ export default function LeaveForm() {
     setSend(true);
     let startDate = String(jalaliDateToAdDate(start)).replace(/\//g, '-');
     let endDate = String(jalaliDateToAdDate(end)).replace(/\//g, '-');
-    console.log(startDate);
-    console.log(endDate);
-    console.log(`${startDate}T${formData.leaveStartTime}:00+03:30`);
-    console.log(`${endDate}T${formData.leaveEndTime}:00+03:30`);
     const sendFormData = new FormData();
     sendFormData.append(
       'start_time',
