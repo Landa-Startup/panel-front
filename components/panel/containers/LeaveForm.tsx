@@ -14,7 +14,8 @@ import { parseCookies } from 'nookies';
 import Input from '@/components/common/form/Input';
 import RadioButton from '@/components/common/RadioButton';
 import jalaliDateToAdDate from '@/services/jalaliDateToAdDate';
-import { JBDateInput } from 'jb-date-input-react';
+import dynamic from 'next/dynamic';
+import { JBDateInputValueObject } from 'jb-date-input-react';
 
 interface LeaveFormData {
   leaveType: number;
@@ -23,6 +24,13 @@ interface LeaveFormData {
   leaveStartTime: string;
   leaveEndTime: string;
 }
+
+// import jbDate
+const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.JBDateInput), {
+  ssr: false,
+});
+
+
 export default function LeaveForm() {
   const initialLeaveForm: LeaveFormData = {
     leaveType: 1,
@@ -31,6 +39,7 @@ export default function LeaveForm() {
     leaveStartTime: '',
     leaveEndTime: '',
   };
+
 
   const {
     register,
@@ -160,7 +169,7 @@ export default function LeaveForm() {
           }}
           style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
           required={true}
-        ></JBDateInput>
+        >{ }</JBDateInput>
         <JBDateInput
           label="End Date"
           format="YYYY/MM/DD"
@@ -168,10 +177,11 @@ export default function LeaveForm() {
           value="1399-05-01T12:05:39.530Z"
           onChange={(event) => {
             setEnd(event.target.value);
+            console.log(event.target.value)
           }}
           style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
           required={true}
-        ></JBDateInput>
+        >{ }</JBDateInput>
         <LeaveFormFromTo
           title="I want leave from"
           register={register}

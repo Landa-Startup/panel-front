@@ -82,11 +82,9 @@ export default function Table({
                       <tr key={index}>
                         <td>{index + 1}</td>
                         {/* Add this line to display the row number */}
-                        {/* <td>{data.first_name}</td>
-                      <td>{data.last_name}</td> */}
-                        {/* <td>{data.typeOfLeave}</td> */}
-                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
+                        <td>{data.vacation_status}</td>
                         <Badge data={data} />
                       </tr>
                     ))}

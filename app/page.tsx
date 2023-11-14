@@ -9,12 +9,12 @@ export default function Dashboard() {
   const cookies = parseCookies();
   const currentUser: DecodedToken = cookies.currentUser ? JSON.parse(cookies.currentUser) : null;
   const token = cookies.token;
-  if (token === undefined) {
-    router.push('/auth/login');
-  }
-  else {
-    router.push(`/dashboard/${currentUser?.role}`)
-  }
+  // if (token === undefined) {
+  //   router.push('/auth/login');
+  // }
+  // else {
+  //   router.push(`/dashboard/${currentUser?.role}`)
+  // }
 
   return (
     <div>
