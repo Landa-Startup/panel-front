@@ -11,11 +11,11 @@ export default function Dashboard() {
     ? JSON.parse(cookies.currentUser)
     : null;
   const token = cookies.token;
-  if (token === undefined) {
-    router.push('/auth/login');
-  } else {
-    router.push(`/dashboard/${currentUser?.role}`);
-  }
+  // if (token === undefined) {
+  //   router.push('/auth/login');
+  // } else {
+  //   router.push(`/dashboard/${currentUser?.role}`);
+  // }
 
   return (
     <div>

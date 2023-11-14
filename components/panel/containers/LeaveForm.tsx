@@ -13,8 +13,8 @@ import { DecodedToken } from 'app/types/global';
 import { parseCookies } from 'nookies';
 import Input from '@/components/common/form/Input';
 import RadioButton from '@/components/common/RadioButton';
-import jalaliDateToAdDate from '@/services/jalaliDateToAdDate';
-import { JBDateInput } from 'jb-date-input-react';
+import { DatePicker } from 'zaman';
+
 
 interface LeaveFormData {
   leaveType: number;
@@ -48,6 +48,7 @@ export default function LeaveForm() {
     ? JSON.parse(cookies.currentUser)
     : null;
   const jwt_token = currentUser?.jwt;
+  const [calendarValue, setCalendarValue] = useState(new Date())
   const user_id = currentUser?.user_id;
   const [csrfToken, setCsrfToken] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -95,17 +96,17 @@ export default function LeaveForm() {
   const onSubmit = async (formData: LeaveFormData) => {
     setIsSubmitting(true);
     setSend(true);
-    let startDate = String(jalaliDateToAdDate(start)).replace(/\//g, '-');
-    let endDate = String(jalaliDateToAdDate(end)).replace(/\//g, '-');
+    // let startDate = String(jalaliDateToAdDate(start)).replace(/\//g, '-');
+    // let endDate = String(jalaliDateToAdDate(end)).replace(/\//g, '-');
     const sendFormData = new FormData();
-    sendFormData.append(
-      'start_time',
-      `${startDate}T${formData.leaveStartTime}:00+03:30`
-    );
-    sendFormData.append(
-      'end_time',
-      `${endDate}T${formData.leaveEndTime}:00+03:30`
-    );
+    // sendFormData.append(
+    //   'start_time',
+    //   `${startDate}T${formData.leaveStartTime}:00+03:30`
+    // );
+    // sendFormData.append(
+    //   'end_time',
+    //   `${endDate}T${formData.leaveEndTime}:00+03:30`
+    // );
     sendFormData.append('vacation_status', String(selectedRadio));
     sendFormData.append('user', String(user_id));
 
@@ -154,7 +155,7 @@ export default function LeaveForm() {
         </span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
-        <JBDateInput
+        {/* <JBDateInput
           label="Start Date"
           format="YYYY/MM/DD"
           valueType="JALALI"
@@ -175,8 +176,17 @@ export default function LeaveForm() {
           }}
           style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
           required={true}
-        ></JBDateInput>
-        <LeaveFormFromTo
+        ></JBDateInput> */}
+          <div>
+        <label className='text-[#6b6b6b]'>Start Date</label>
+        <br />
+        <DatePicker
+        defaultValue={calendarValue}
+        onChange={(e) => console.log(e.value)}
+        inputClass = "h-[60px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px] w-[300px]"
+        />
+          </div>
+          <LeaveFormFromTo
           title="I want leave from"
           register={register}
           errors={errors}
