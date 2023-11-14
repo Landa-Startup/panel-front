@@ -65,7 +65,7 @@ export default function TableContainer() {
     fetchData('panel/my-vacation-form')
       .then((result) => {
         setMyData(result);
-        console.log('mentor');
+        // console.log('mentor');
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -80,6 +80,10 @@ export default function TableContainer() {
     } else if (currentUser?.role == 'mentor') {
       employeeData();
       fetchMyData();
+    }else if(currentUser?.role == 'staff'){
+      fetchMyData();
+      console.log(myData);
+      console.log("is staff");
     }
   }, []);
   return (
@@ -144,7 +148,7 @@ export default function TableContainer() {
         }
       })()}
       {(() => {
-        if (currentUser?.role === 'staff' || currentUser?.role === 'mentor') {
+        if (currentUser?.role === 'mentor') {
           return (
             <div>
               {' '}
@@ -153,11 +157,40 @@ export default function TableContainer() {
                 header="My leave permissions"
                 tableHead={[
                   'No.',
-                  'Employee Name',
-                  'Employer Name',
-                  'Type Of Leave',
                   'Start Time',
                   'End Time',
+                  'Type Of Leave',
+                  'Status',
+                ]}
+                tableData={myData.map((data, index) => ({
+                  ...data,
+                  // Map the status and type of leave to strings
+                  status: getStatusString(parseInt(data.status)),
+                  vacation_status: getTypeOfLeaveString(
+                    parseInt(data.vacation_status)
+                  ), // Add this line
+                }))}
+                tableType="my"
+              />
+            </div>
+          );
+        } else {
+          return <div></div>;
+        }
+      })()}
+            {(() => {
+        if (currentUser?.role === 'staff') {
+          return (
+            <div>
+              {' '}
+              <br />
+              <Table
+                header="My leave permissions"
+                tableHead={[
+                  'No.',
+                  'Start Time',
+                  'End Time',
+                  'Type Of Leave',
                   'Status',
                 ]}
                 tableData={myData}

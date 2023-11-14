@@ -69,8 +69,8 @@ export default function Table({
                           {data.user.first_name} {data.user.last_name}
                         </td>
                         <td>{data.vacation_status}</td>
-                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <Badge data={data} />
                       </tr>
                     ))}
@@ -83,12 +83,9 @@ export default function Table({
                     {tableData.map((data, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
-                        {/* Add this line to display the row number */}
-                        {/* <td>{data.first_name}</td>
-                      <td>{data.last_name}</td> */}
-                        {/* <td>{data.typeOfLeave}</td> */}
-                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
+                        <td>{data.vacation_status}</td>
                         <Badge data={data} />
                       </tr>
                     ))}
@@ -110,8 +107,9 @@ export default function Table({
                           {data.user.employer.last_name}
                         </td>
                         <td>{data.vacation_status}</td>
-                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
+
                         <Badge data={data} />
                       </tr>
                     ))}
