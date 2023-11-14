@@ -143,7 +143,7 @@ export default function TableContainer() {
         }
       })()}
       {(() => {
-        if (currentUser?.role === 'staff' || currentUser?.role === 'mentor') {
+        if (currentUser?.role === 'mentor') {
           return (
             <div>
               {' '}

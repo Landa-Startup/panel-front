@@ -68,8 +68,8 @@ export default function Table({
                           {data.user.first_name} {data.user.last_name}
                         </td>
                         <td>{data.vacation_status}</td>
-                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <Badge data={data} />
                       </tr>
                     ))}
@@ -105,8 +105,9 @@ export default function Table({
                           {data.user.employer.last_name}
                         </td>
                         <td>{data.vacation_status}</td>
-                        <td>{AdDateToJalaliDate(data.end_time)}</td>
                         <td>{AdDateToJalaliDate(data.start_time)}</td>
+                        <td>{AdDateToJalaliDate(data.end_time)}</td>
+
                         <Badge data={data} />
                       </tr>
                     ))}

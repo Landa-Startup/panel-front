@@ -177,7 +177,6 @@ export default function LeaveForm() {
           value="1399-05-01T12:05:39.530Z"
           onChange={(event) => {
             setEnd(event.target.value);
-            console.log(event.target.value)
           }}
           style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
           required={true}
