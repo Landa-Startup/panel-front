@@ -27,8 +27,7 @@ export default function LeaveFormFromTo({
           patternValue=""
           patternMessage="Please enter a valid Start time (e.g., 2001/02/11)"
           placeholder="12:21"
-          className="h-[60px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px] w-[300px]"
-          labelClass="text-[#6b6b6b] dark:text-current"
+          className="w-[300px] md:w-[150px] h-[60px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px] md:w-[210px]"          labelClass="text-[#6b6b6b] dark:text-current"
         />
         <span>To</span>
         <Input
@@ -41,7 +40,7 @@ export default function LeaveFormFromTo({
           patternValue=""
           patternMessage="Please enter a valid End Time (e.g., 2001/02/11)"
           placeholder="12:21"
-          className="h-[60px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px] w-[300px]"
+          className="w-[300px] md:w-[150px] h-[60px] bg-whiteGold rounded-lg px-7 py-2 font-barlow text-xl tracking-[5px] md:w-[210px]"
           labelClass="text-[#6b6b6b] dark:text-current"
         />
       </div>
