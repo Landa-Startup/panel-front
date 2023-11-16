@@ -9,7 +9,7 @@ export default function Navbar() {
   const [userData, setUserData] = useState<DecodedToken | null>(null);
   useEffect(() => {
     const cookies = parseCookies();
-    const currentUser: DecodedToken | null = JSON.parse(cookies.currentUser);
+    const currentUser: DecodedToken | null = cookies.currentUser ? JSON.parse(cookies.currentUser) : null;
     if (currentUser) {
       setUserData(currentUser);
     }
