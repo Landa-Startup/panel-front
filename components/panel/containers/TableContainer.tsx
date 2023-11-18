@@ -77,7 +77,7 @@ export default function TableContainer() {
     } else if (currentUser?.role == 'mentor') {
       employeeData();
       fetchMyData();
-    }else if(currentUser?.role == 'staff'){
+    } else if (currentUser?.role == 'staff') {
       fetchMyData();
     }
   }, []);
@@ -143,7 +143,7 @@ export default function TableContainer() {
         }
       })()}
       {(() => {
-        if (currentUser?.role === 'mentor') {
+        if (currentUser?.role === 'staff' || currentUser?.role === 'mentor') {
           return (
             <div>
               {' '}

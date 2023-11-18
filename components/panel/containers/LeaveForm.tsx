@@ -154,7 +154,7 @@ export default function LeaveForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
       <div className="flex gap-2 border-b-2 border-black pb-4 mb-6">
         <ClipboardData size={32} />
-        <span className="text-3xl font-medium font-barlow">
+        <span className="text-xl md:text-3xl font-medium font-barlow">
           leave permission Form
         </span>
       </div>
@@ -167,7 +167,7 @@ export default function LeaveForm() {
           onChange={(event) => {
             setStart(event.target.value);
           }}
-          style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
+          style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; margin: 10px"
           required={true}
         >{ }</JBDateInput>
         <JBDateInput
@@ -178,7 +178,7 @@ export default function LeaveForm() {
           onChange={(event) => {
             setEnd(event.target.value);
           }}
-          style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; width:300px; margin-left:auto; margin-right:auto;"
+          style="--jb-date-input-border-radius:9px;--jb-date-input-bgcolor:#f9f6f3;--jb-date-input-label-weight:bold;--jb-date-input-box-height:60px; margin: 10px"
           required={true}
         >{ }</JBDateInput>
         <LeaveFormFromTo

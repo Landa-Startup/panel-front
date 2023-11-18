@@ -68,7 +68,7 @@ export default function LoginPage() {
       </div>
       <Image
         className=" hidden md:block absolute md:right-28 md:bottom-0 md:z-10"
-        src="/static/images/panel/login/blur.png"
+        src="/static/images/auth/login/blur.png"
         alt="Landa Blur"
         width={589}
         height={800}
@@ -92,9 +92,8 @@ export default function LoginPage() {
                 },
               })}
               placeholder="Email"
-              className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${
-                errors.email ? 'border-red-500' : ''
-              }`}
+              className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${errors.email ? 'border-red-500' : ''
+                }`}
             />
             {errors.email && (
               <p style={{ color: 'red' }}>{errors.email.message}</p>
@@ -113,9 +112,8 @@ export default function LoginPage() {
                 },
               })}
               placeholder="Password"
-              className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${
-                errors.password ? 'border-red-500' : ''
-              }`}
+              className={`md:w-[548px] md:h-[75px] w-[300px] input input-bordered bg-white/50 backdrop-blur-lg border border-gray-200 rounded-md px-3 py-2 text-gray-700 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary ${errors.password ? 'border-red-500' : ''
+                }`}
             />
             {errors.password && (
               <p style={{ color: 'red' }}>{errors.password.message}</p>
@@ -163,7 +161,7 @@ export default function LoginPage() {
         <div className="hidden md:block md:w-[589px] md:h-[802px]">
           <Image
             className="absolute"
-            src="/static/images/panel/login/notBlur.png"
+            src="/static/images/auth/login/not-blur.png"
             alt="Landa Blur"
             layout="fill"
           />
