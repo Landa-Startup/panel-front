@@ -67,5 +67,13 @@
     "tailwindcss": "^3.3.1",
     "typescript": "^5.2.2",
     "husky": "^8.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && pnpm run lint"
+    } 
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "git add"] 
   }
 }
