@@ -38,7 +38,7 @@ export default function LoginPage() {
         setSend(false);
         console.log('Form data sent successfully!');
         // read from cookie
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           setShowNotification(false);
         }, 10000); // 10 seconds in milliseconds
         const cookies = parseCookies();
@@ -52,7 +52,7 @@ export default function LoginPage() {
       setIsSuccess(false);
       //TODO: remove below code after testing
       console.error('Error sending form data:', error);
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         setShowNotification(false);
         // setIsSubmitting(false)
       }, 10000); // 10 seconds in milliseconds
