@@ -4,7 +4,7 @@ import { DecodedToken } from 'app/types/global';
 
 // import { refreshToken } from './authService';
 
-const TOKEN_EXPIRATION_TIME = 30 * 60 * 1000; // 30 minutes
+const TOKEN_EXPIRATION_TIME = 24*60*60; // 30 minutes
 
 export async function login(email: string, password: string) {
   const response = await fetch(
