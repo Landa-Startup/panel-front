@@ -1,7 +1,8 @@
 import React from 'react'
-import RegisterForm from '@/components/register/RegisterForm'
+// import RegisterForm from '@/components/register/RegisterForm'
 export default function page() {
   return (
-    <RegisterForm/>
+    // <RegisterForm/>
+    <div>Not Valid Url!</div>
   )
 }

@@ -3,7 +3,7 @@ import React from 'react';
 export default function StartupsArrowLeft() {
   return (
     <svg
-      className="absolute border border-white text-white hover:text-black hover:bg-white hover:border hover:border-black transition-all duration-300 cursor-pointer"
+      className="absolute cursor-pointer border border-white text-white transition-all duration-300 hover:border hover:border-black hover:bg-white hover:text-black"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"

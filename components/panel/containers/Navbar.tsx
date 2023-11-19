@@ -1,9 +1,9 @@
 'use client';
 import IconDown from '@/components/icons/IconDown';
 import { DecodedToken } from 'app/types/global';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { parseCookies } from 'nookies';
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Navbar() {
   const [userData, setUserData] = useState<DecodedToken | null>(null);
@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <div className="flex h-[calc(100vh)-5px]">
-      <div className="flex flex-col md:flex-row bg-primary w-2/12 h-16 items-center md:items-end md:pl-9 md:pb-2 p-2">
+      <div className="flex h-16 w-2/12 flex-col items-center bg-primary p-2 md:flex-row md:items-end md:pb-2 md:pl-9">
         {/* TODO: why svg here? */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -37,12 +37,12 @@ export default function Navbar() {
             />
           </g>
         </svg>
-        <span className="md:text-xl font-semibold tracking-[2px] text-whiteGold">
+        <span className="font-semibold tracking-[2px] text-whiteGold md:text-xl">
           LANDA
         </span>
       </div>
-      <div className="bg-[#CCB598] h-16 w-10/12">
-        <div className="flex justify-end h-16 items-center gap-5 md:gap-12 md:mr-16">
+      <div className="h-16 w-10/12 bg-[#CCB598]">
+        <div className="flex h-16 items-center justify-end gap-5 md:mr-16 md:gap-12">
           {/* TODO: why svg here? */}
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +54,8 @@ export default function Navbar() {
           >
             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
           </svg> */}
-          <div className="flex gap-2 md:gap-4 items-center">
-            <div className="w-10 h-10 relative">
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="relative h-10 w-10">
               {/* <Image
                 className="rounded-full border border-black"
                 src={`${process.env.NEXT_PUBLIC_DJANGO_HOST_URL}${userData?.image}`}
@@ -63,7 +63,7 @@ export default function Navbar() {
                 layout="fill"
               /> */}
             </div>
-            <div className="flex text-[#222] text-xl tracking-[0.5px] items-center gap-2">
+            <div className="flex items-center gap-2 text-xl tracking-[0.5px] text-[#222]">
               <span className="capitalize">
                 {userData?.first_name} {userData?.last_name}
               </span>

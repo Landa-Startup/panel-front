@@ -41,12 +41,12 @@ export default function Table({
 }) {
   return (
     <div>
-      <div className="flex items-center gap-2 font-medium text-xl md:text-3xl border-b-2 border-black pb-4 mb-6">
+      <div className="mb-6 flex items-center gap-2 border-b-2 border-black pb-4 text-xl font-medium md:text-3xl">
         <ClipboardData size={32} />
         <span>{header}</span>
       </div>
-      <div className="w-[300px] md:w-full overflow-auto">
-        <table className="table table-sm md:table-md lg:table-lg table-zebra overflow-x-auto whitespace-nowrap">
+      <div className="w-[300px] overflow-auto md:w-full">
+        <table className="table table-zebra table-sm overflow-x-auto whitespace-nowrap md:table-md lg:table-lg">
           {/* head */}
           <thead>
             <tr className="bg-tableHeader text-stone-500">

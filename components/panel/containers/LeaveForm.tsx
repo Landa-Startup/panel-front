@@ -1,9 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import LeaveFormRadio from '../LeaveFormRadio';
 import LeaveFormFromTo from '../LeaveFormFromTo';
-import LeaveFormDate from '../LeaveFormDate';
 import ClipboardData from '@/components/icons/Panel/ClipboardData';
 import GetCsrfToken from '@/utils/get-csrf-token';
 import { useForm } from 'react-hook-form';
@@ -11,11 +9,10 @@ import NotificationSendForm from '../../common/form/NotificationSendForm';
 import apiClient from '@/utils/api';
 import { DecodedToken } from 'app/types/global';
 import { parseCookies } from 'nookies';
-import Input from '@/components/common/form/Input';
 import RadioButton from '@/components/common/RadioButton';
 import jalaliDateToAdDate from '@/services/jalaliDateToAdDate';
 import dynamic from 'next/dynamic';
-import { JBDateInputValueObject } from 'jb-date-input-react';
+// import { JBDateInputValueObject } from 'jb-date-input-react';
 
 interface LeaveFormData {
   leaveType: number;
@@ -52,6 +49,7 @@ export default function LeaveForm() {
   });
 
   const [formData, setFormData] = useState<LeaveFormData>(initialLeaveForm);
+  console.log(formData)
   const cookies = parseCookies();
   const currentUser: DecodedToken | null = cookies.currentUser
     ? JSON.parse(cookies.currentUser)
@@ -64,13 +62,10 @@ export default function LeaveForm() {
   // TODO: change Send to send(start with small letter)
   const [Send, setSend] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
-
   const router = useRouter();
-
   const onCancel = () => {
     router.push('/dashboard/manager');
   };
-
   useEffect(() => {
     async function fetchCsrfToken() {
       const token = await GetCsrfToken(
@@ -86,22 +81,14 @@ export default function LeaveForm() {
   const [selectedRadio, setSelectedRadio] = useState('1');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
-
   const handleRadio = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedRadio(event.target.value);
-  };
-
-  const handleStart = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setStart(event.target.value);
-  };
-  const handleEnd = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setEnd(event.target.value);
   };
   const onSubmit = async (formData: LeaveFormData) => {
     setIsSubmitting(true);
     setSend(true);
-    let startDate = String(jalaliDateToAdDate(start)).replace(/\//g, '-');
-    let endDate = String(jalaliDateToAdDate(end)).replace(/\//g, '-');
+    const startDate = String(jalaliDateToAdDate(start)).replace(/\//g, '-');
+    const endDate = String(jalaliDateToAdDate(end)).replace(/\//g, '-');
     const sendFormData = new FormData();
     sendFormData.append(
       'start_time',
@@ -115,7 +102,7 @@ export default function LeaveForm() {
     sendFormData.append('user', String(user_id));
 
     try {
-      const response = await apiClient.post(
+      await apiClient.post(
         'panel/create-vacation-form',
         sendFormData,
         {
@@ -133,7 +120,7 @@ export default function LeaveForm() {
       reset(initialLeaveForm); // Reset the form after successful submission
       setFormData(initialLeaveForm);
       console.log('Form data sent successfully!');
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         setShowNotification(false);
       }, 10000); // 10 seconds in milliseconds
     } catch (error) {
@@ -144,7 +131,7 @@ export default function LeaveForm() {
       console.error('Error sending form data:', error);
       reset(initialLeaveForm); // Reset the form after successful submission
       setFormData(initialLeaveForm); // reset states after successful submission
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         setShowNotification(false);
       }, 10000); // 10 seconds in milliseconds
     }
@@ -152,13 +139,13 @@ export default function LeaveForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      <div className="flex gap-2 border-b-2 border-black pb-4 mb-6">
+      <div className="mb-6 flex gap-2 border-b-2 border-black pb-4">
         <ClipboardData size={32} />
-        <span className="text-xl md:text-3xl font-medium font-barlow">
+        <span className="font-barlow text-xl font-medium md:text-3xl">
           leave permission Form
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-9">
+      <div className="grid grid-cols-1 gap-9 md:grid-cols-2">
         <JBDateInput
           label="Start Date"
           format="YYYY/MM/DD"
@@ -200,12 +187,12 @@ export default function LeaveForm() {
         <button
           disabled={Send}
           type="submit"
-          className="bg-primary text-white font-barlow text-base font-semibold px-8 py-2 rounded-lg mt-8"
+          className="mt-8 rounded-lg bg-primary px-8 py-2 font-barlow text-base font-semibold text-white"
         >
           {Send ? 'Submiting ....' : 'Submit'}
         </button>
         <button
-          className="bg-[#F8F5F0] text-primary font-barlow text-base font-semibold px-8 py-2 rounded-lg mt-8 ml-4"
+          className="ml-4 mt-8 rounded-lg bg-[#F8F5F0] px-8 py-2 font-barlow text-base font-semibold text-primary"
           onClick={onCancel}
         >
           Cancel

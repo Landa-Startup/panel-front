@@ -10,8 +10,8 @@ import IconEmailB from '../icons/IconEmailB';
 export default function ContactUsDescription() {
   return (
     <div>
-      <h1 className="text-5xl font-light font-gilda">Landa Holding</h1>
-      <p className="my-5 text-base text-justify">
+      <h1 className="font-gilda text-5xl font-light">Landa Holding</h1>
+      <p className="my-5 text-justify text-base">
         In Landa academy, individuals will be trained based on their interests
         and capabilities. Necessary actions are taken at the Landa Acceleration
         Center to accelerate their unique abilities. Then, investment is made
@@ -38,7 +38,7 @@ export default function ContactUsDescription() {
           <IconLinkedinB />
         </Link>
       </div>
-      <div className="flex my-3">
+      <div className="my-3 flex">
         <Phone />
         <ul className="mx-4">
           <li className="font-semibold">Phone Call</li>
@@ -63,7 +63,7 @@ export default function ContactUsDescription() {
           </li>
         </ul>
       </div>
-      <div className="flex my-3">
+      <div className="my-3 flex">
         <Email />
         <ul className="mx-4">
           <li className="font-semibold">Email info</li>
@@ -75,9 +75,9 @@ export default function ContactUsDescription() {
         </ul>
       </div>
 
-      <div className="flex my-3">
+      <div className="my-3 flex">
         <Location />
-        <div className="flex flex-col ml-2">
+        <div className="ml-2 flex flex-col">
           <span className="font-semibold">Address</span>
           <ul className="mx-4 list-disc space-y-3">
             <li>No. 200, 7646 Yonge Street, Toronto, ON L4J 1V9, Canada</li>

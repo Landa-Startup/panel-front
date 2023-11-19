@@ -5,7 +5,7 @@ export default function CopyRight() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="w-full flex justify-center top-[350px] absolute text-center text-white text-base font-normal font-barlow">
+    <div className="absolute top-[350px] flex w-full justify-center text-center font-barlow text-base font-normal text-white">
       Copyright © {currentYear}
       <Link href={'/'} className="text-primary">
         Landa

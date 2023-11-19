@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import IconLinkedin from '../icons/IconLinkedin';
 import LinkedIn from '../icons/about/LinkedIn';
 
 export default function PersonalTab({
@@ -16,24 +15,24 @@ export default function PersonalTab({
 }) {
   return (
     <div
-      className="w-[300px] md:w-[270px] h-[300px] border border-primary rounded-sm flex flex-col justify-between items-center"
+      className="flex h-[300px] w-[300px] flex-col items-center justify-between rounded-sm border border-primary md:w-[270px]"
       style={{
         backgroundImage: `url(${image})`,
         backgroundPosition: 'center',
       }}
     >
-      <div className="flex flex-col p-4 space-y-2 self-start">
+      <div className="flex flex-col space-y-2 self-start p-4">
         <Link
           href={linkedIn}
-          className="text-white rounded-full bg-[#222] p-2 opacity-75"
+          className="rounded-full bg-[#222] p-2 text-white opacity-75"
         >
           <LinkedIn />
         </Link>
       </div>
       <div className="flex flex-col items-center px-4 pb-4 text-white  ">
-        <span className="font-normal text-lg">{name}</span>
-        <div className="font-light w-full flex items-center justify-center border-t-2 ">
-          <span className="font-light border-t-3 ">{position}</span>
+        <span className="text-lg font-normal">{name}</span>
+        <div className="flex w-full items-center justify-center border-t-2 font-light ">
+          <span className="border-t-3 font-light ">{position}</span>
         </div>
       </div>
     </div>

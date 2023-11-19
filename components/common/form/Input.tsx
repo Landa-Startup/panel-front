@@ -1,5 +1,3 @@
-import { useForm, UseFormRegister, FieldValues } from 'react-hook-form';
-
 export default function Input({
   register,
   errors,
@@ -25,7 +23,7 @@ export default function Input({
   className: string;
   labelClass: string;
 }) {
-  let value = new RegExp(patternValue); // **don`t use slash (/) before and after regex pattern for this component and don`t use i end of regex pattern in this component
+  const value = new RegExp(patternValue); // **don`t use slash (/) before and after regex pattern for this component and don`t use i end of regex pattern in this component
   return (
     <div className="flex flex-col">
       <label htmlFor={nameInput} className={labelClass}>

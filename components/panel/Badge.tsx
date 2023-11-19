@@ -25,7 +25,7 @@ export default function Badge({ data }: { data: any }) {
 
   return (
     <td
-      className={`inline-flex items-center text-xs font-medium ${className} ring-1 ring-inset rounded-full my-1`}
+      className={`inline-flex items-center text-xs font-medium ${className} my-1 rounded-full ring-1 ring-inset`}
     >
       {label}
     </td>

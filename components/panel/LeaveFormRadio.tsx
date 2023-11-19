@@ -3,8 +3,6 @@ import React from 'react';
 export default function LeaveFormRadio({
   title,
   items,
-  register,
-  errors,
 }: {
   title: string;
   items: string[];
@@ -17,11 +15,11 @@ export default function LeaveFormRadio({
         <span className="font-barlow text-base font-semibold">{title}</span>
         <span className="text-primary">*</span>
       </div>
-      <div className="flex gap-9 py-3 px-4 bg-[#F8F5F080] rounded-lg">
+      <div className="flex gap-9 rounded-lg bg-[#F8F5F080] px-4 py-3">
         {items.map((item, index) => (
           <div key={index} className="flex gap-4">
             <input
-              className="radio checked:bg-primary checked:border-primary"
+              className="radio checked:border-primary checked:bg-primary"
               type="radio"
               name={title}
               value={item.split(' ')[0]}

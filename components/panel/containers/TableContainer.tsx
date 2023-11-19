@@ -1,6 +1,6 @@
 'use client';
 import Table from '../Table';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
 import { DecodedToken } from 'app/types/global';
 import { fetchData } from '@/utils/fetchData';
@@ -82,7 +82,7 @@ export default function TableContainer() {
     }
   }, []);
   return (
-    <div className="flex flex-col gap-14 overflow-x-auto mx-2 md:mx-auto mt-10">
+    <div className="mx-2 mt-10 flex flex-col gap-14 overflow-x-auto md:mx-auto">
       {(() => {
         if (currentUser?.role === 'manager') {
           return (
@@ -97,7 +97,7 @@ export default function TableContainer() {
                 'End Time',
                 'Status',
               ]}
-              tableData={allData.map((data, index) => ({
+              tableData={allData.map((data) => ({
                 ...data,
                 // Map the status and type of leave to strings
                 status: getStatusString(parseInt(data.status)),
@@ -126,7 +126,7 @@ export default function TableContainer() {
                   'End Time',
                   'Status',
                 ]}
-                tableData={employee.map((data, index) => ({
+                tableData={employee.map((data) => ({
                   ...data,
                   // Map the status and type of leave to strings
                   status: getStatusString(parseInt(data.status)),
@@ -157,7 +157,7 @@ export default function TableContainer() {
                   'Type Of Leave',
                   'Status',
                 ]}
-                tableData={myData.map((data, index) => ({
+                tableData={myData.map((data) => ({
                   ...data,
                   // Map the status and type of leave to strings
                   status: getStatusString(parseInt(data.status)),
