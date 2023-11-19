@@ -27,15 +27,15 @@ export default function YesRadioButton({
       <label className="text-[#6b6b6b] dark:text-current">{title}</label>
       <div className="flex flex-col">
         {/* Radio buttons for 'Yes' and 'No' */}
-        <div className="flex flex-row mt-4 bg-[#f9f6f3] dark:bg-[#1D232A] p-4 rounded-lg drop-shadow-lg">
-          <label className="flex flex-column mr-10 ">
+        <div className="mt-4 flex flex-row rounded-lg bg-[#f9f6f3] p-4 drop-shadow-lg dark:bg-[#1D232A]">
+          <label className="flex-column mr-10 flex ">
             <input
               type="radio"
               value="true"
               {...register(name, { required: required })}
               checked={selectedRadio === 'true'}
               onChange={handleRadioChange}
-              className="radio mr-2 text-indigo-600 dark:text-indigo-400 drop-shadow-lg"
+              className="radio mr-2 text-indigo-600 drop-shadow-lg dark:text-indigo-400"
             />
             <span>Yes</span>
           </label>
@@ -46,7 +46,7 @@ export default function YesRadioButton({
               {...register(name, { required:  'this file is requied!'})}
               checked={selectedRadio === ''}
               onChange={handleRadioChange}
-              className="radio mr-2 text-indigo-600 dark:text-indigo-400  drop-shadow-lg"
+              className="radio mr-2 text-indigo-600 drop-shadow-lg  dark:text-indigo-400"
             />
             <span>No</span>
           </label>
@@ -58,7 +58,7 @@ export default function YesRadioButton({
             <input
               type="file"
               required
-              className="bg-[#f9f6f3] dark:bg-[#1D232A] mt-3 p-5 w-full rounded-lg"
+              className="mt-3 w-full rounded-lg bg-[#f9f6f3] p-5 dark:bg-[#1D232A]"
               {...register(fileName, { required: 'this file is requied!' })}
               onChange={handleChangeFile} // Use onChange event handler after register
             />

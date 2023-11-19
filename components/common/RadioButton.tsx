@@ -21,15 +21,15 @@ export default function RadioButton({
       <label className="text-[#6b6b6b]">{title}</label>
       <div className="flex flex-col">
         {/* Radio buttons for 'Yes' and 'No' */}
-        <div className="flex flex-row mt-4 bg-[#f9f6f3]  p-4 rounded-lg drop-shadow-lg">
-          <label className="flex flex-column mr-10 ">
+        <div className="mt-4 flex flex-row rounded-lg  bg-[#f9f6f3] p-4 drop-shadow-lg">
+          <label className="flex-column mr-10 flex ">
             <input
               type="radio"
               value="1"
               {...register(name, { required: required })}
               checked={selectedRadio === '1'}
               onChange={handleRadioChange}
-              className="radio mr-2 text-indigo-600 dark:text-indigo-400 drop-shadow-lg"
+              className="radio mr-2 text-indigo-600 drop-shadow-lg dark:text-indigo-400"
             />
             <span>illness</span>
           </label>
@@ -40,7 +40,7 @@ export default function RadioButton({
               {...register(name, { required:  'this file is requied!'})}
               checked={selectedRadio === '2'}
               onChange={handleRadioChange}
-              className="radio mr-2 text-indigo-600 dark:text-indigo-400  drop-shadow-lg"
+              className="radio mr-2 text-indigo-600 drop-shadow-lg  dark:text-indigo-400"
             />
             <span>entitlement</span>
           </label>

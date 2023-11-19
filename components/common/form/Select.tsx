@@ -1,5 +1,3 @@
-import { useForm, UseFormRegister, FieldValues } from 'react-hook-form';
-
 export default function Select({
   register,
   errors,

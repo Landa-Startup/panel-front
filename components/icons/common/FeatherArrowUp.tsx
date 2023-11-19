@@ -10,7 +10,7 @@ export default function FeatherArrowUp() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="feather feather-arrow-up w-6 h-6"
+      className="feather feather-arrow-up h-6 w-6"
     >
       <line x1="12" y1="19" x2="12" y2="5" />
       <polyline points="5 12 12 5 19 12" />

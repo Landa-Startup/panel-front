@@ -15,7 +15,7 @@ export default function PageContainer() {
   return (
     <div className="">
       <Navbar />
-      <div className="w-[calc(100vh)-5px] h-screen flex space-x">
+      <div className="space-x flex h-screen w-[calc(100vh)-5px]">
         <LeftSection
           activeMenu={activeMenu}
           handleMenuClick={handleMenuClick}

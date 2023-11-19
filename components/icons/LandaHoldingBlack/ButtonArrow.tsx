@@ -3,7 +3,7 @@ import React from 'react';
 export default function ButtonArrow() {
   return (
     <svg
-      className="absolute text-white transition duration-1000 ease-in-out group-hover:text-white group-hover:bg-black"
+      className="absolute text-white transition duration-1000 ease-in-out group-hover:bg-black group-hover:text-white"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"

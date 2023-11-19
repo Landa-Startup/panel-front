@@ -10,25 +10,25 @@ export default function LeftSection({
   handleMenuClick: any;
 }) {
   return (
-    <div className="w-2/12 flex flex-col bg-[#EEE6DD] text-[#222]">
-      <ul className="font-barlow font-medium text-xl divide-y divide-[#AA8453]">
+    <div className="flex w-2/12 flex-col bg-[#EEE6DD] text-[#222]">
+      <ul className="divide-y divide-[#AA8453] font-barlow text-xl font-medium">
         <li
-          className={`flex gap-2 items-center md:pl-6 py-3 justify-center md:justify-start ${
+          className={`flex items-center justify-center gap-2 py-3 md:justify-start md:pl-6 ${
             activeMenu === 'dashboard' ? 'active font-bold' : ''
           }`}
           onClick={() => handleMenuClick('dashboard')}
         >
           <House />
-          <span className="hidden md:block cursor-pointer">Dashboard</span>
+          <span className="hidden cursor-pointer md:block">Dashboard</span>
         </li>
         <li
-          className={`flex gap-2 items-center md:pl-6 py-3 justify-center md:justify-start ${
+          className={`flex items-center justify-center gap-2 py-3 md:justify-start md:pl-6 ${
             activeMenu === 'leave' ? 'active font-bold' : ''
           }`}
           onClick={() => handleMenuClick('leave')}
         >
           <ClipboardData size={16} />
-          <span className="hidden md:block cursor-pointer">
+          <span className="hidden cursor-pointer md:block">
             Leave Permissions
           </span>
         </li>

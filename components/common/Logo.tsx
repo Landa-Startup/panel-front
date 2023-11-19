@@ -5,12 +5,12 @@ import React from 'react';
 
 export default function Logo({ route }: { route: 'holding' | 'academy' }) {
   return (
-    <div className="px-2 m-2 text-left h-full flex justify-start items-center">
+    <div className="m-2 flex h-full items-center justify-start px-2 text-left">
       <Link href={route === 'holding' ? '/' : '/academy'}>
-        <div className="flex flex-col md:flex-row items-end">
+        <div className="flex flex-col items-end md:flex-row">
           <Image
             loading="lazy"
-            className="w-10 h-10 md:w-12 md:h-14"
+            className="h-10 w-10 md:h-14 md:w-12"
             src={
               route === 'holding'
                 ? 'static/images/Logo.svg'
@@ -23,7 +23,7 @@ export default function Logo({ route }: { route: 'holding' | 'academy' }) {
           <span
             className={`${
               route === 'academy' ? 'text-lime-400' : 'text-primary'
-            } text-[12px] md:text-xl tracking-[0.375px] font-bold`}
+            } text-[12px] font-bold tracking-[0.375px] md:text-xl`}
           >
             {route === 'academy' ? 'Academy' : 'Landa'}
           </span>

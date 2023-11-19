@@ -33,19 +33,19 @@ export default function Button({
       onClick={() => router.push(goto || '/')}
       className={`btn2 ${
         isVisitSize
-          ? 'w-[135px] md:w-[219px] h-[32px] md:h-[60px] pl-[72px] pr-[71px] pt-[15px] pb-4 mt-[19px]'
-          : 'hidden md:flex h-11 pl-[72px] pr-[71px] pt-[15px] pb-4 mt-[19px]'
+          ? 'mt-[19px] h-[32px] w-[135px] pb-4 pl-[72px] pr-[71px] pt-[15px] md:h-[60px] md:w-[219px]'
+          : 'mt-[19px] hidden h-11 pb-4 pl-[72px] pr-[71px] pt-[15px] md:flex'
       } ${
         bgColor === 'Primary' ? 'bg-primary' : 'bg-[#FDD30A]'
-      } px-10 py-5 relative border border-white uppercase tracking-wider leading-none overflow-hidden inset-0 flex justify-center items-center text-center font-condensed text-white text-base font-normal hover:text-white ${addedClass}`}
+      } relative inset-0 flex items-center justify-center overflow-hidden border border-white px-10 py-5 text-center font-condensed text-base font-normal uppercase leading-none tracking-wider text-white hover:text-white ${addedClass}`}
       type={type}
     >
       <span className="absolute inset-0 bg-black"></span>
-      <span className="absolute inset-0 flex justify-center items-center text-center font-condensed text-white text-base font-medium leading-none">
+      <span className="absolute inset-0 flex items-center justify-center text-center font-condensed text-base font-medium leading-none text-white">
         {text}
       </span>
       {isVisitSize && (
-        <span className="absolute inset-0 flex justify-center items-center text-center font-condensed text-white text-base font-medium leading-none">
+        <span className="absolute inset-0 flex items-center justify-center text-center font-condensed text-base font-medium leading-none text-white">
           {text}
         </span>
       )}

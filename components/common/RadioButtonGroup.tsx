@@ -18,16 +18,16 @@ export default function RadioButtonGroup({
   return (
     <div>
       <label className="text-[#6b6b6b] dark:text-current">{title}</label>
-      <div className="bg-[#f9f6f3] dark:bg-[#1D232A] p-4 rounded-lg w-full mt-3 mb-1 drop-shadow-lg">
+      <div className="mb-1 mt-3 w-full rounded-lg bg-[#f9f6f3] p-4 drop-shadow-lg dark:bg-[#1D232A]">
         {options.map((option) => (
-          <label key={option.value} className="flex items-center my-4">
+          <label key={option.value} className="my-4 flex items-center">
             <input
               type="radio"
               value={option.value}
               {...register(nameRadioButton, {
                 required: required,
               })}
-              className="radio mr-2 text-indigo-600 dark:text-indigo-400 drop-shadow-lg"
+              className="radio mr-2 text-indigo-600 drop-shadow-lg dark:text-indigo-400"
             />
             <span>{option.label}</span>
           </label>
