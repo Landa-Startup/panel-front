@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import { setCookie, destroyCookie, parseCookies } from 'nookies';
+import { setCookie } from 'nookies';
 import { DecodedToken } from 'app/types/global';
 
 // import { refreshToken } from './authService';
@@ -7,6 +7,7 @@ import { DecodedToken } from 'app/types/global';
 const TOKEN_EXPIRATION_TIME = 24*60*60; // 30 minutes
 
 export async function login(email: string, password: string) {
+  email = email.toLowerCase()
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_DJANGO_HOST_URL}accounts/api/token/`,
     {
