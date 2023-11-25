@@ -18,9 +18,9 @@ export async function login(email: string, password: string) {
       body: JSON.stringify({ email, password }),
     }
   );
-
+  const responseJson = await response.json();
   if (response.ok) {
-    const { access } = await response.json();
+    const { access } = responseJson
     const decodedToken = jwtDecode<DecodedToken>(access);
     decodedToken.jwt = access;
     if (decodedToken) {
@@ -28,14 +28,10 @@ export async function login(email: string, password: string) {
         maxAge: TOKEN_EXPIRATION_TIME,
         path: '/',
       });
-      // setCookie(null, 'refreshToken', refreshToken, {
-      //     maxAge: 30 * 24 * 60 * 60, // 30 days
-      //     path: '/',
-      // });
     }
     return decodedToken;
   } else {
-    throw new Error('Failed to login');
+    throw new Error(responseJson.detail);
   }
 }
 // export async function refreshAccessToken() {

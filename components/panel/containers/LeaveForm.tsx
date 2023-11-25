@@ -62,6 +62,8 @@ export default function LeaveForm() {
   // TODO: change Send to send(start with small letter)
   const [Send, setSend] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
+  const [error,setError] = useState('');
+
   const router = useRouter();
   const onCancel = () => {
     router.push('/dashboard/manager');
@@ -123,12 +125,14 @@ export default function LeaveForm() {
       setTimeout(() => {
         setShowNotification(false);
       }, 10000); // 10 seconds in milliseconds
-    } catch (error) {
+    } catch (error:any) {
       setShowNotification(true);
       setSend(false);
       setIsSuccess(false);
-      //TODO: remove below code after testing
-      console.error('Error sending form data:', error);
+      console.log('error')
+      console.log(error.message['detail'])
+      setError(error.message)
+
       reset(initialLeaveForm); // Reset the form after successful submission
       setFormData(initialLeaveForm); // reset states after successful submission
       setTimeout(() => {
@@ -203,6 +207,8 @@ export default function LeaveForm() {
         success={isSuccess}
         sendStatus={Send}
         show={showNotification}
+        successMessage='Your Vacation request has Send'
+        faildMessage={error}
       />
     </form>
   );

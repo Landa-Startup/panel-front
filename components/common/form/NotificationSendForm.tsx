@@ -6,18 +6,22 @@ export default function NotificationSendForm({
   success,
   sendStatus,
   show,
+  successMessage,
+  faildMessage,
 }: {
   submitting: boolean;
   success: boolean;
   sendStatus: boolean;
   show: boolean;
+  successMessage:string;
+  faildMessage:string;
 }) {
   return (
     <div className="mx-auto mt-5 w-64 lg:w-96">
       {success && submitting && !sendStatus && show && (
         <div className="alert alert-success">
           <Check />
-          <span>Form Submitted Successfully.</span>
+          <span>{successMessage}</span>
         </div>
       )}
 
@@ -36,7 +40,7 @@ export default function NotificationSendForm({
               d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <span>An error occurred. Please Contact Support.</span>
+          <span>{faildMessage}</span>
         </div>
       )}
     </div>

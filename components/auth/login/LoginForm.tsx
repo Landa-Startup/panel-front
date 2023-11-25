@@ -24,12 +24,14 @@ export default function LoginPage() {
   const [isSuccess, setIsSuccess] = useState(true);
   const [send, setSend] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
+  const [error,setError] = useState('');
 
   const onSubmit = async (formData: LoginFormData) => {
     setIsSubmitting(true);
     setSend(true);
     try {
       const user = await login(formData.email, formData.password);
+
       if (user) {
         setIsSuccess(true);
         setShowNotification(true);
@@ -44,12 +46,13 @@ export default function LoginPage() {
 
         router.push(`/dashboard/${currentUser.role}`);
       }
-    } catch (error) {
+    } catch (err:any) {
       setShowNotification(true);
       setSend(false);
       setIsSuccess(false);
+      setError(err.message)
       //TODO: remove below code after testing
-      console.error('Error sending form data:', error);
+      // setError(err)
       setTimeout(() => {
         setShowNotification(false);
         // setIsSubmitting(false)
@@ -146,6 +149,8 @@ export default function LoginPage() {
           success={isSuccess}
           sendStatus={send}
           show={showNotification}
+          successMessage='Login success!'
+          faildMessage={error}
         />
         <div className="absolute bottom-11 left-32 flex items-center gap-2">
           <Telephone />
