@@ -4,7 +4,7 @@ import House from '@/components/icons/Panel/House';
 
 export default function LeftSection({
   activeMenu,
-  handleMenuClick,
+  handleMenuClick
 }: {
   activeMenu: any;
   handleMenuClick: any;
